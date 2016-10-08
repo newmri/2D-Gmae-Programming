@@ -4,7 +4,7 @@ from BackGround import setBack
 from map import Map
 
 setBack()
-open_canvas(375, 397)
+open_canvas(375, 397,sync=True)
 house=load_image('Resources\\Map\\MansHouse.png')
 map=Map(house,375,397,'house')
 map.draw()
@@ -13,7 +13,7 @@ man=User(skin,'Original')
 retval,man=run('run',map,man)
 while(True):
     if retval=='inhouse':
-        open_canvas(375, 397)
+        open_canvas(375, 397,sync=True)
         house = load_image('Resources\\Map\\MansHouse.png')
         map = Map(house, 375, 397, 'house')
         map.draw()
@@ -22,7 +22,7 @@ while(True):
         man.skinType = 'Original'
         retval,man = run('run', map, man)
     elif retval=='outhouse':
-        open_canvas(1008, 689)
+        open_canvas(1008, 689,sync=True)
         outofhouse=load_image('Resources\\Map\\OutOfHouse.png')
         map=Map(outofhouse,1008,689,'outofhouse')
         map.draw()

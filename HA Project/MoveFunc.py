@@ -49,7 +49,7 @@ def run(chk,map,man):
                 man.y += 5
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[DOWN]:
                 man.y -= 5
@@ -57,7 +57,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[RIGHT]:
                 man.x += 5
@@ -65,7 +65,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[LEFT]:
                 man.x -= 5
@@ -73,7 +73,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
 
     elif chk == 'run' and map.name == 'outofhouse':
