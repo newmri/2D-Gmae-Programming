@@ -2,6 +2,7 @@ from MoveFunc import run
 from CharClass import *
 from BackGround import setBack
 from map import Map
+from Battle import battle
 
 setBack()
 open_canvas(375, 397,sync=True)
@@ -31,6 +32,6 @@ while(True):
     elif retval=='battle':
         bmap=load_image('Resources\\Map\\Battle.png')
         map=Map(bmap,1008,689,'battle')
-        map.draw()
-        man.update()
-        delay(6)
+        man.skin=load_image('Resources\\MainCharacter\\Original.png')
+        man.skinType='Original'
+        battle(man,map)

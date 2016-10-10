@@ -12,5 +12,8 @@ class Map:
     def draw(self):
          self.map.draw(self.x/2,self.y/2)
          if self.chk ==True:
-             self.monster.drawFirst()
+             if self.name != 'battle':
+                self.monster.drawFirst()
+             else:
+                 self.monster.drawBattle()
 

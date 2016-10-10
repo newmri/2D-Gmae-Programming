@@ -37,7 +37,8 @@ class Monster(baseofCharacter):
         self.type=type
     def drawFirst(self):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
-
+    def drawBattle(self):
+        self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
 
     def giveItem(self,other):
         pass
@@ -55,6 +56,12 @@ class User(Monster):
         self.movePosition=[False,False,False,False]
         self.moveChk=[False,False,False,False]
         self.rotate=FIRST
+
+    def setSkill(self, skill):
+        self.skill = skill
+    def drawSkill_Icon(self,y):
+        self.skill.draw(self.x,y-100)
+
     def draw(self):
         if self.skinType == 'Original':
             # Images of UP
@@ -133,6 +140,9 @@ class User(Monster):
     def drawFirst(self):
         if self.skinType == 'Original':
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
+    def drawBattle(self):
+        if self.skinType=='Original':
+            self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
 
 
 class NPC(baseofCharacter):
