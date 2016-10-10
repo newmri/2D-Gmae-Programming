@@ -80,12 +80,21 @@ def run(chk,map,man):
         man.x = 654
         man.y = 284.5
         man.movePosition=[False,False,False,False]
+        skin=load_image('Resources\\Monster\\rocket.png')
+        rocket=Monster(skin,'Original')
+        map.setMonster(rocket)
+        map.monster.x=map.x/2
+        map.monster.y=map.y/2
+        map.draw()
+        map.monster.drawFirst()
         man.drawFirst()
         man.update()
         while (True):          # y 300 700 x 469~534
             #print(man.x, man.y)
             if map.chk == True:
-                print(dist(man, map.monster))
+                if 15>= dist(man, map.monster):
+                    clear_canvas()
+                    return 'battle',man
             handle_events(man)
             get_events()
             if man.x>=469 and man.x<=534 and man.y>=700:
