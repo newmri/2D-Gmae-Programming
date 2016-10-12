@@ -92,7 +92,7 @@ def run(chk,map,man):
         while (True):          # y 300 700 x 469~534
             #print(man.x, man.y)
             if map.chk == True:
-                if 15>= dist(man, map.monster):
+                if 25>= dist(man, map.monster):
                     clear_canvas()
                     return 'battle',man
             handle_events(man)
