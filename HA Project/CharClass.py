@@ -56,11 +56,18 @@ class User(Monster):
         self.movePosition=[False,False,False,False]
         self.moveChk=[False,False,False,False]
         self.rotate=FIRST
-
+        self.frame=0
+    def skillUpdate(self):
+        self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
         self.skill = skill
     def drawSkill_Icon(self,y):
         self.skill.draw(self.x,y-100)
+    def drawSkillEfect(self,x):
+        self.skill.clip_draw(self.frame*42,0,42,30,self.x,self.y)
+        self.x+=self.x
+
+
 
     def draw(self):
         if self.skinType == 'Original':
