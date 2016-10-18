@@ -34,4 +34,4 @@ while(True):
         map=Map(bmap,1008,689,'battle')
         man.skin=load_image('Resources\\MainCharacter\\Original.png')
         man.skinType='Original'
-        battle(man,map)
+        retval,man = battle(man,map)

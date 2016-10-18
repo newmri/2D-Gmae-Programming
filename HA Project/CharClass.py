@@ -57,6 +57,7 @@ class User(Monster):
         self.moveChk=[False,False,False,False]
         self.rotate=FIRST
         self.frame=0
+        self.fight=True
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
@@ -66,7 +67,10 @@ class User(Monster):
     def drawSkillEfect(self,x):
         self.skill.clip_draw(self.frame*42,0,42,30,self.x,self.y)
         self.x+=self.x
-
+    def setBattleDialog(self,dialog):
+        self.dialog=dialog
+    def drawBattleDialog(self):
+         self.dialog.draw(self.x+200,self.y+100)
 
 
     def draw(self):
