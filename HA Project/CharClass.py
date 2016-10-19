@@ -58,17 +58,21 @@ class User(Monster):
         self.rotate=FIRST
         self.frame=0
         self.fight=True
+        self.fightRun=False
+        self.drawDiaChk=True
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
         self.skill = skill
-    def drawSkill_Icon(self,y):
-        self.skill.draw(self.x,y-100)
+    def drawSkill_Box(self,y):
+        self.skill.draw(self.x+200,y+100)
     def drawSkillEfect(self,x):
         self.skill.clip_draw(self.frame*42,0,42,30,self.x,self.y)
         self.x+=self.x
     def setBattleDialog(self,dialog):
         self.dialog=dialog
+    def resetBattleDialog(self):
+        self.drawDiaChk=False
     def drawBattleDialog(self):
          self.dialog.draw(self.x+200,self.y+100)
 
