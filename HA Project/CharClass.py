@@ -60,6 +60,7 @@ class User(Monster):
         self.fight=True
         self.fightRun=False
         self.drawDiaChk=True
+        self.drawSkillChk=False
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
