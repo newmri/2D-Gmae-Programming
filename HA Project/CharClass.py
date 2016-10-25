@@ -29,12 +29,15 @@ class baseofCharacter:
 
 class Monster(baseofCharacter):
     def __init__(self, skin, type):
+
         self.skillList=[0,0,0,0]
         self.skillCool=[0,0,0,0]
         self.skillDamage=[0,0,0,0]
         self.myTurn=False
         self.skin=skin
         self.type=type
+        self.skillX=0
+        self.skillY=0
     def drawFirst(self):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
     def drawBattle(self):
@@ -65,11 +68,15 @@ class User(Monster):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
         self.skill = skill
+    def setSkillEfect(self,skill):
+        self.skillEffect=skill
     def drawSkill_Box(self,y):
         self.skill.draw(self.x+200,y+100)
-    def drawSkillEfect(self,x):
-        self.skill.clip_draw(self.frame*42,0,42,30,self.x,self.y)
-        self.x+=self.x
+    def drawSkillEfect(self,x,y):
+        self.skillX=x
+        self.skillY=y
+        self.skill.clip_draw(self.frame*42,0,42,30,self.skillX,self.skillY)
+        self.skillX+=self.skillX
     def setBattleDialog(self,dialog):
         self.dialog=dialog
     def resetBattleDialog(self):
