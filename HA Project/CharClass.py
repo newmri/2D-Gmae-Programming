@@ -42,7 +42,8 @@ class Monster(baseofCharacter):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
     def drawBattle(self):
         self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
-
+    def setHitEffect(self,Effect):
+        self.hitEffect=[Effect[0],Effect[1],Effect[2],Effect[3],Effect[4],Effect[5],Effect[6],Effect[7]]
     def giveItem(self,other):
         pass
 
@@ -72,11 +73,25 @@ class User(Monster):
         self.skillEffect=skill
     def drawSkill_Box(self,y):
         self.skill.draw(self.x+200,y+100)
-    def drawSkillEfect(self,x,y):
-        self.skillX=x
-        self.skillY=y
-        self.skill.clip_draw(self.frame*42,0,42,30,self.skillX,self.skillY)
-        self.skillX+=self.skillX
+    def drawSkillEfect(self,man,map):
+        self.skillX=man.x
+        self.skillY=man.y
+        while self.skillX <map.monster.x:
+               clear_canvas()
+               map.draw()
+               man.drawBattle()
+               self.skillEffect.clip_draw(self.frame*42,0,42,30,self.skillX+20,self.skillY)
+               self.skillUpdate()
+               self.skillX+=self.skillX
+               delay(0.05)
+               man.update()
+        for i in range(7):
+            clear_canvas()
+            map.draw()
+            man.drawBattle()
+            map.monster.hitEffect[i].draw(map.monster.x,map.monster.y)
+            delay(0.05)
+            man.update()
     def setBattleDialog(self,dialog):
         self.dialog=dialog
     def resetBattleDialog(self):
