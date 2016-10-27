@@ -14,8 +14,6 @@ class baseofCharacter:
         self.ItemList=[0,0]
         self.gold=0
         self.x,y=0
-        self.hp,mp=100
-        self.dp=5
 
     def update(self):
         update_canvas()
@@ -38,6 +36,8 @@ class Monster(baseofCharacter):
         self.type=type
         self.skillX=0
         self.skillY=0
+        self.hp,mp=30,30
+        self.dp=0
     def drawFirst(self):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
     def drawBattle(self):
@@ -49,7 +49,8 @@ class Monster(baseofCharacter):
 
     def giveGold(self,other):
         pass
-
+    def calDamage(self,Dmg):
+        self.hp-=(Dmg-self.dp)
     def Attack(self,other):
         pass
 
@@ -65,6 +66,7 @@ class User(Monster):
         self.fightRun=False
         self.drawDiaChk=True
         self.drawSkillChk=False
+        self.skillDmg=10
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
