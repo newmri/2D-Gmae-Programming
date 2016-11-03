@@ -30,7 +30,7 @@ class Monster(baseofCharacter):
 
         self.skillList=[0,0,0,0]
         self.skillCool=[0,0,0,0]
-        self.skillDamage=[0,0,0,0]
+        self.skillDmg=5
         self.myTurn=False
         self.skin=skin
         self.type=type
@@ -53,6 +53,31 @@ class Monster(baseofCharacter):
         self.hp-=(Dmg-self.dp)
     def Attack(self,other):
         pass
+    def skillUpdate(self):
+        self.frame = (self.frame + 1) % 6
+    def setSkill(self, skill):
+        self.skill = skill
+    def setSkillEfect(self,skill):
+        self.skillEffect=skill
+    def drawSkillEfect(self,man):
+        self.skillX=man.x
+        self.skillY=man.y
+        for i in range(6):
+               clear_canvas()
+               self.draw()
+               man.drawBattle()
+               self.skillEffect[i].draw(man.x,man.y)
+               #self.skillUpdate()
+               #self.skillX+=self.skillX
+               delay(0.05)
+               man.update()
+        for i in range(7):
+            clear_canvas()
+            self.draw()
+            man.drawBattle()
+            man.hitEffect[i].draw(man.x,man.y)
+            delay(0.05)
+            man.update()
 
 class User(Monster):
     def __init__(self, skin, type):
@@ -67,6 +92,9 @@ class User(Monster):
         self.drawDiaChk=True
         self.drawSkillChk=False
         self.skillDmg=10
+        self.hp,mp=30,30
+        self.dp=5
+        self. myTurn=True
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
