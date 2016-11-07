@@ -1,7 +1,6 @@
 from CharClass import *
 from map import *
 
-# This is test.
 
 
 def handle_events(man,map):
