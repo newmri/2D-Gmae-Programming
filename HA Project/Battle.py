@@ -1,7 +1,8 @@
 from CharClass import *
 from map import *
 
-
+# Easter Egg
+# When user tires to go north zone, then game will be over.
 
 def handle_events(man,map):
     events=get_events()
@@ -25,8 +26,8 @@ def handle_events(man,map):
                         map.monster.setHitEffect(hitEffect)
                         man.drawSkillEfect(man,map)
                         map.monster.calDamage(man.skillDmg)
+                        map.monster.myTurn = True
                         print(map.monster.hp)
-                        #man.myTurn=False
 
                 elif man.fight==True:
                      if event.key == SDLK_SPACE:
@@ -80,6 +81,10 @@ def battle(man,map):
     while(onBattle==True):
         handle_events(man,map)
         get_events()
+        if map.monster.hp<=0 or man.hp<=0:
+            man.hp=30
+            map.monster.hp=30
+            man.fight='outhouse'
         if man.fight=='outhouse':
             man.fight=True
             return 'outhouse',man
@@ -99,8 +104,8 @@ def battle(man,map):
             else:
                 man.drawSkill_Box(man.y)
         man.update()
-        map.monster.myTurn=True
         if map.monster.myTurn==True:
+
             skillEfect = [load_image('Resources\\SkillEffect\\Thunder1.png'),
                       load_image('Resources\\SkillEffect\\Thunder2.png'),
                       load_image('Resources\\SkillEffect\\Thunder3.png'),
@@ -120,10 +125,10 @@ def battle(man,map):
 
             map.monster.setSkillEfect(skillEfect)
             man.setHitEffect(hitEffect)
-            map.monster.drawSkillEfect(man)
-            man.calDamage(map.monster.skillDmg)
-            man.myTurn=True
-            map.monster.myTurn == False
+            map.monster.drawSkillEfect(man,map)
+            print(map.monster.skillDmg)
+            map.monster.myTurn = False
+
 
 
 

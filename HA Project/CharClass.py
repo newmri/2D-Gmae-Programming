@@ -30,7 +30,7 @@ class Monster(baseofCharacter):
 
         self.skillList=[0,0,0,0]
         self.skillCool=[0,0,0,0]
-        self.skillDmg=5
+        self.skillDmg=10
         self.myTurn=False
         self.skin=skin
         self.type=type
@@ -42,6 +42,8 @@ class Monster(baseofCharacter):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
     def drawBattle(self):
         self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
+        font = load_font('ENCR10B.TTF', 30)
+        font.draw(self.x-100, self.y - 50, 'HP: %d' % self.hp)
     def setHitEffect(self,Effect):
         self.hitEffect=[Effect[0],Effect[1],Effect[2],Effect[3],Effect[4],Effect[5],Effect[6],Effect[7]]
     def giveItem(self,other):
@@ -49,8 +51,11 @@ class Monster(baseofCharacter):
 
     def giveGold(self,other):
         pass
-    def calDamage(self,Dmg):
-        self.hp-=(Dmg-self.dp)
+
+    def calDamage(self, Dmg):
+        self.hp -= (Dmg - self.dp)
+
+
     def Attack(self,other):
         pass
     def skillUpdate(self):
@@ -59,11 +64,12 @@ class Monster(baseofCharacter):
         self.skill = skill
     def setSkillEfect(self,skill):
         self.skillEffect=skill
-    def drawSkillEfect(self,man):
+    def drawSkillEfect(self,man,map):
         self.skillX=man.x
         self.skillY=man.y
         for i in range(6):
                clear_canvas()
+               map.draw()
                self.draw()
                man.drawBattle()
                self.skillEffect[i].draw(man.x,man.y)
@@ -73,11 +79,19 @@ class Monster(baseofCharacter):
                man.update()
         for i in range(7):
             clear_canvas()
+            map.draw()
             self.draw()
             man.drawBattle()
             man.hitEffect[i].draw(man.x,man.y)
             delay(0.05)
             man.update()
+        man.calDamage(self.skillDmg)
+        print(man.hp)
+        clear_canvas()
+        map.draw()
+        man.drawBattle()
+        man.update()
+
 
 class User(Monster):
     def __init__(self, skin, type):
@@ -128,6 +142,10 @@ class User(Monster):
         self.drawDiaChk=False
     def drawBattleDialog(self):
          self.dialog.draw(self.x+200,self.y+100)
+
+    def calDamage(self, Dmg):
+        self.hp -= (Dmg - self.dp)
+
 
 
     def draw(self):
@@ -211,7 +229,8 @@ class User(Monster):
     def drawBattle(self):
         if self.skinType=='Original':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
-
+            font=load_font('ENCR10B.TTF',30)
+            font.draw(self.x,self.y-50,'HP: %d' % self.hp)
 
 class NPC(baseofCharacter):
        pass
