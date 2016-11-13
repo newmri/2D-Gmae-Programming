@@ -1,7 +1,7 @@
 from CharClass import *
 from map import *
 
-# Easter Egg
+# Easter Egg 123
 # When user tires to go north zone, then game will be over.
 
 def handle_events(man,map):
