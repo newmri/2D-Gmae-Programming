@@ -36,7 +36,7 @@ class Monster(baseofCharacter):
         self.type=type
         self.skillX=0
         self.skillY=0
-        self.hp,mp=30,30
+        self.hp,mp=100,30
         self.dp=0
     def drawFirst(self):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
@@ -106,7 +106,7 @@ class User(Monster):
         self.drawDiaChk=True
         self.drawSkillChk=False
         self.skillDmg=10
-        self.hp,mp=30,30
+        self.hp,mp=100,30
         self.dp=5
         self. myTurn=True
     def skillUpdate(self):

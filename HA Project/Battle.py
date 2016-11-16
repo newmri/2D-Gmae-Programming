@@ -82,8 +82,8 @@ def battle(man,map):
         handle_events(man,map)
         get_events()
         if map.monster.hp<=0 or man.hp<=0:
-            man.hp=30
-            map.monster.hp=30
+            man.hp=100
+            map.monster.hp=100
             man.fight='outhouse'
         if man.fight=='outhouse':
             man.fight=True
