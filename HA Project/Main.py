@@ -26,12 +26,20 @@ while(True):
         open_canvas(1008, 689,sync=True)
         outofhouse=load_image('Resources\\Map\\OutOfHouse.png')
         map=Map(outofhouse,1008,689,'outofhouse')
-        man.skin=load_image('Resources\\MainCharacter\\Original.png')
-        man.skinType='Original'
+        if man.won=='Rocket':
+            man.skin=load_image('Resources\\Monster\\rocket.png')
+            man.skinType='Rocket'
+        else:
+            man.skin=load_image('Resources\\MainCharacter\\Original.png')
+            man.skinType='Original'
         retval,man=run('run',map,man)
     elif retval=='battle':
         bmap=load_image('Resources\\Map\\Battle.png')
         map=Map(bmap,1008,689,'battle')
-        man.skin=load_image('Resources\\MainCharacter\\Original.png')
-        man.skinType='Original'
+        if man.won=='Rocket':
+            man.skin=load_image('Resources\\Monster\\rocket.png')
+            man.skinType='Rocket'
+        else:
+            man.skin=load_image('Resources\\MainCharacter\\Original.png')
+            man.skinType='Original'
         retval,man = battle(man,map)

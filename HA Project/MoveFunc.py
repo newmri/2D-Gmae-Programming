@@ -81,7 +81,7 @@ def run(chk,map,man):
         man.y = 284.5
         man.movePosition=[False,False,False,False]
         skin=load_image('Resources\\Monster\\rocket.png')
-        rocket=Monster(skin,'Original')
+        rocket=Monster(skin,'Rocket')
         map.setMonster(rocket)
         map.monster.x=map.x/2
         map.monster.y=map.y/2

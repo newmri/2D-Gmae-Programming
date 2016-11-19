@@ -16,7 +16,16 @@ def handle_events(man,map):
                 elif man.fightRun==True:
                     if event.key == SDLK_SPACE:
                         print("skill")
-                        skillEfect = load_image('Resources\\SkillEffect\\Fire.png')
+                        if man.skinType=='Original':
+                            skillEfect = load_image('Resources\\SkillEffect\\Fire.png')
+                        elif man.skinType=='Rocket':
+                            skillEfect = [load_image('Resources\\SkillEffect\\Thunder1.png'),
+                                          load_image('Resources\\SkillEffect\\Thunder2.png'),
+                                          load_image('Resources\\SkillEffect\\Thunder3.png'),
+                                          load_image('Resources\\SkillEffect\\Thunder4.png'),
+                                          load_image('Resources\\SkillEffect\\Thunder5.png'),
+                                          load_image('Resources\\SkillEffect\\Thunder6.png')
+                                          ]
                         hitEffect = [load_image('Resources\\BloodEffect\\bloodtrail0.png'),load_image('Resources\\BloodEffect\\bloodtrail_1.png'),
                                      load_image('Resources\\BloodEffect\\bloodtrail_2.png'),load_image('Resources\\BloodEffect\\bloodtrail_3.png')
                                      ,load_image('Resources\\BloodEffect\\bloodtrail_4.png'),load_image('Resources\\BloodEffect\\bloodtrail_5.png')
@@ -33,13 +42,14 @@ def handle_events(man,map):
                      if event.key == SDLK_SPACE:
                         if man.skinType=='Original':
                             skill=load_image('Resources\\SelectOfSkills\\FireBallSel.png')
-                            man.setSkill(skill)
-                            man.fightRun=True
-                            man.resetBattleDialog()
-                            clear_canvas()
-                            map.draw()
-                            man.drawBattle()
-                            man.myTurn = False
+                        man.setSkill(skill)
+                        man.fightRun=True
+                        man.resetBattleDialog()
+                        clear_canvas()
+                        map.draw()
+                        man.drawBattle()
+                        man.myTurn = False
+
 
 
                      if event.key == SDLK_UP:
@@ -64,7 +74,7 @@ def battle(man,map):
 
     clear_canvas()
     skin = load_image('Resources\\Monster\\rocket.png')
-    rocket = Monster(skin, 'Original')
+    rocket = Monster(skin, 'Rocket')
     map.setMonster(rocket)
     map.monster.x = map.x-30
     map.monster.y = map.y / 2
@@ -79,12 +89,16 @@ def battle(man,map):
     man.update()
     onBattle=True
     while(onBattle==True):
-        handle_events(man,map)
-        get_events()
+        if(map.monster.myTurn==False):
+            handle_events(man,map)
+            get_events()
         if map.monster.hp<=0 or man.hp<=0:
             man.hp=100
             map.monster.hp=100
             man.fight='outhouse'
+            print(map.monster.type)
+            man.won=map.monster.type
+            man.skillDmg=map.monster.skillDmg
         if man.fight=='outhouse':
             man.fight=True
             return 'outhouse',man

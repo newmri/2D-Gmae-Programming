@@ -27,16 +27,16 @@ class baseofCharacter:
 
 class Monster(baseofCharacter):
     def __init__(self, skin, type):
-
+        self.name=0
         self.skillList=[0,0,0,0]
         self.skillCool=[0,0,0,0]
-        self.skillDmg=10
+        self.skillDmg=5
         self.myTurn=False
         self.skin=skin
         self.type=type
         self.skillX=0
         self.skillY=0
-        self.hp,mp=100,30
+        self.hp,mp=10,30
         self.dp=0
     def drawFirst(self):
         self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
@@ -95,6 +95,7 @@ class Monster(baseofCharacter):
 
 class User(Monster):
     def __init__(self, skin, type):
+        self.won=0
         self.skin = skin
         self.skinType = type
         self.movePosition=[False,False,False,False]
@@ -107,7 +108,7 @@ class User(Monster):
         self.drawSkillChk=False
         self.skillDmg=10
         self.hp,mp=100,30
-        self.dp=5
+        self.dp=0
         self. myTurn=True
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
@@ -118,17 +119,31 @@ class User(Monster):
     def drawSkill_Box(self,y):
         self.skill.draw(self.x+200,y+100)
     def drawSkillEfect(self,man,map):
-        self.skillX=man.x
-        self.skillY=man.y
-        while self.skillX <map.monster.x:
-               clear_canvas()
-               map.draw()
-               man.drawBattle()
-               self.skillEffect.clip_draw(self.frame*42,0,42,30,self.skillX+20,self.skillY)
-               self.skillUpdate()
-               self.skillX+=self.skillX
-               delay(0.05)
-               man.update()
+        if self.skinType=='Original':
+            self.skillX=man.x
+            self.skillY=man.y
+            while self.skillX <map.monster.x:
+                   clear_canvas()
+                   map.draw()
+                   man.drawBattle()
+                   self.skillEffect.clip_draw(self.frame*42,0,42,30,self.skillX+20,self.skillY)
+                   self.skillUpdate()
+                   self.skillX+=self.skillX
+                   delay(0.05)
+                   man.update()
+        elif self.skinType=='Rocket':
+                self.skillX = map.monster.x
+                self.skillY = map.monster.y
+                for i in range(6):
+                    clear_canvas()
+                    map.draw()
+                    self.draw()
+                    man.drawBattle()
+                    self.skillEffect[i].draw(map.monster.x,map.monster.y)
+                    # self.skillUpdate()
+                    # self.skillX+=self.skillX
+                    delay(0.05)
+                    man.update()
         for i in range(7):
             clear_canvas()
             map.draw()
@@ -145,7 +160,6 @@ class User(Monster):
 
     def calDamage(self, Dmg):
         self.hp -= (Dmg - self.dp)
-
 
 
     def draw(self):
@@ -222,15 +236,91 @@ class User(Monster):
                    self.roate=FIRST
                    self.moveChk[RIGHT]=False
 
+        elif self.skinType == 'Rocket':
+            # Images of UP
+            if self.movePosition[UP] == True:
+                if self.rotate == FIRST:
+                    self.skin.clip_draw(0, 0, 30, 48, self.x, self.y)
+                elif self.rotate == SECOND:
+                    self.skin.clip_draw(30, 0, 30, 48, self.x, self.y)
+                elif self.rotate == THIRD:
+                    self.skin.clip_draw(30 * 2, 0, 30, 48, self.x, self.y)
+                elif self.rotate == FORTH:
+                    self.skin.clip_draw(30 * 3 + 8, 0, 30, 48, self.x, self.y)
+                self.rotate += 1
+                if self.rotate > FORTH:
+                    self.rotate = FIRST
+                self.moveChk[UP] = True
+            elif (self.movePosition[UP] == False) & (self.moveChk[UP] == True):
+                self.rotate = FIRST
+                self.moveChk[UP] = False
+
+            # Images of DOWN
+            if self.movePosition[DOWN] == True:
+                if self.rotate == FIRST:
+                    self.skin.clip_draw(0, 48 * 3, 30, 48, self.x, self.y)
+                elif self.rotate == SECOND:
+                    self.skin.clip_draw(30, 48 * 3, 30, 48, self.x, self.y)
+                elif self.rotate == THIRD:
+                    self.skin.clip_draw(30 * 2, 48 * 3, 30, 48, self.x, self.y)
+                elif self.rotate == FORTH:
+                    self.skin.clip_draw(30 * 3 + 8, 48 * 3, 30, 48, self.x, self.y)
+                self.rotate += 1
+                if self.rotate > FORTH:
+                    self.rotate = FIRST
+                self.moveChk[DOWN] = True
+            elif (self.movePosition[DOWN] == False) & (self.moveChk[DOWN] == True):
+                self.roate = FIRST
+                self.moveChk[DOWN] = False
+
+            # Images of LEFT
+            if self.movePosition[LEFT] == True:
+                if self.rotate == FIRST:
+                    self.skin.clip_draw(0, 48 * 2, 30, 48, self.x, self.y)
+                elif self.rotate == SECOND:
+                    self.skin.clip_draw(30, 48 * 2, 30, 48, self.x, self.y)
+                elif self.rotate == THIRD:
+                    self.skin.clip_draw(30 * 2, 48 * 2, 30, 48, self.x, self.y)
+                elif self.rotate == FORTH:
+                    self.skin.clip_draw(30 * 3 + 8, 48 * 2, 30, 48, self.x, self.y)
+                self.rotate += 1
+                if self.rotate > FORTH:
+                    self.rotate = FIRST
+                self.moveChk[LEFT] = True
+            elif (self.movePosition[LEFT] == False) & (self.moveChk[LEFT] == True):
+                self.roate = FIRST
+                self.moveChk[LEFT] = False
+
+            # Images of RIGHT
+            if self.movePosition[RIGHT] == True:
+                if self.rotate == FIRST:
+                    self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
+                elif self.rotate == SECOND:
+                    self.skin.clip_draw(30, 48, 30, 48, self.x, self.y)
+                elif self.rotate == THIRD:
+                    self.skin.clip_draw(30 * 2, 48, 30, 48, self.x, self.y)
+                elif self.rotate == FORTH:
+                    self.skin.clip_draw(30 * 3 + 8, 48, 30, 48, self.x, self.y)
+                self.rotate += 1
+                if self.rotate > FORTH:
+                    self.rotate = FIRST
+                self.moveChk[RIGHT] = True
+            elif (self.movePosition[RIGHT] == False) & (self.moveChk[RIGHT] == True):
+                self.roate = FIRST
+                self.moveChk[RIGHT] = False
 
     def drawFirst(self):
         if self.skinType == 'Original':
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
+        elif self.skinType=='Rocket':
+            self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
     def drawBattle(self):
         if self.skinType=='Original':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
-            font=load_font('ENCR10B.TTF',30)
-            font.draw(self.x,self.y-50,'HP: %d' % self.hp)
+        elif self.skinType=='Rocket':
+            self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
+        font=load_font('ENCR10B.TTF',30)
+        font.draw(self.x,self.y-50,'HP: %d' % self.hp)
 
 class NPC(baseofCharacter):
        pass
