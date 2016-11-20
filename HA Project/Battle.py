@@ -70,14 +70,21 @@ def handle_events(man,map):
 
 
 
-def battle(man,map):
+def battle(man,map,type):
 
     clear_canvas()
-    skin = load_image('Resources\\Monster\\rocket.png')
-    rocket = Monster(skin, 'Rocket')
-    map.setMonster(rocket)
-    map.monster.x = map.x-30
-    map.monster.y = map.y / 2
+    if type=='Rocket':
+        skin = load_image('Resources\\Monster\\rocket.png')
+        rocket = Monster(skin, 'Rocket')
+        map.setBattleMonster(rocket,'Rocket')
+        map.monster.x = map.x-30
+        map.monster.y = map.y / 2
+    elif type=='Dragon':
+        skin = load_image('Resources\\Monster\\Dragon.png')
+        dragon = Monster(skin, 'Dragon')
+        map.setBattleMonster(dragon,'Dragon')
+        map.monster.x = map.x-100
+        map.monster.y = map.y / 2
     map.draw()
     man.x=30
     man.y=map.y/2

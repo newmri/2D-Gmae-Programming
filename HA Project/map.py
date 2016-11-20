@@ -5,15 +5,24 @@ class Map:
          self.y=y
          self.name=name
          self.chk=False
-    def setMonster(self,monster):
+    def setMonster(self,monster,dragon):
         self.monster=monster
+        self.dragon=dragon
         self.chk=True
-#t
+
+    def setBattleMonster(self, monster,type):
+        self.monster = monster
+        self.type=type
+        self.chk = True
+
+    #t
     def draw(self):
          self.map.draw(self.x/2,self.y/2)
          if self.chk ==True:
              if self.name != 'battle':
                 self.monster.drawFirst()
+                self.dragon.drawFirst()
              else:
-                 self.monster.drawBattle()
+                self.monster.drawBattle()
+
 

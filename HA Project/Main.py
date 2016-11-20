@@ -32,7 +32,7 @@ while(True):
         else:
             man.skin=load_image('Resources\\MainCharacter\\Original.png')
             man.skinType='Original'
-        retval,man=run('run',map,man)
+        retval,man,type=run('run',map,man)
     elif retval=='battle':
         bmap=load_image('Resources\\Map\\Battle.png')
         map=Map(bmap,1008,689,'battle')
@@ -42,4 +42,4 @@ while(True):
         else:
             man.skin=load_image('Resources\\MainCharacter\\Original.png')
             man.skinType='Original'
-        retval,man = battle(man,map)
+        retval,man = battle(man,map,type)

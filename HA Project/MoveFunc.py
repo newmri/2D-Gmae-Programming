@@ -81,12 +81,17 @@ def run(chk,map,man):
         man.y = 284.5
         man.movePosition=[False,False,False,False]
         skin=load_image('Resources\\Monster\\rocket.png')
+        skin2=load_image('Resources\\Monster\\Dragon.png')
         rocket=Monster(skin,'Rocket')
-        map.setMonster(rocket)
+        dragon=Monster(skin2,'Dragon')
+        map.setMonster(rocket,dragon)
         map.monster.x=map.x/2
         map.monster.y=map.y/2
+        map.dragon.x=map.x/2-150
+        map.dragon.y = map.y / 2 - 30
         map.draw()
         map.monster.drawFirst()
+        map.dragon.drawFirst()
         man.drawFirst()
         man.update()
         while (True):          # y 300 700 x 469~534
@@ -94,7 +99,11 @@ def run(chk,map,man):
             if map.chk == True:
                 if 25>= dist(man, map.monster):
                     clear_canvas()
-                    return 'battle',man
+                    return 'battle', man,'Rocket'
+                elif 50>= dist(man, map.dragon):
+                    clear_canvas()
+                    return 'battle', man,'Dragon'
+
             handle_events(man)
             get_events()
             if man.x>=469 and man.x<=534 and man.y>=700:
@@ -108,7 +117,7 @@ def run(chk,map,man):
                 man.y += 5
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[DOWN]:
                 man.y -= 5
@@ -116,7 +125,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[RIGHT]:
                 man.x += 5
@@ -124,7 +133,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
 
             if man.movePosition[LEFT]:
                 man.x -= 5
@@ -132,7 +141,7 @@ def run(chk,map,man):
                 map.draw()
                 man.draw()
                 man.update()
-                delay(0.1)
+                delay(0.05)
         return 'outofhouse'
 
 

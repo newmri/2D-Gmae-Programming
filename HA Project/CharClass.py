@@ -37,11 +37,18 @@ class Monster(baseofCharacter):
         self.skillX=0
         self.skillY=0
         self.hp,mp=10,30
+        self.battle=0
         self.dp=0
     def drawFirst(self):
-        self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
+        if self.type=='Rocket':
+            self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
+        elif self.type=='Dragon':
+            self.skin.clip_draw(0, 96, 96, 96, self.x, self.y)
     def drawBattle(self):
-        self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
+        if self.type=='Rocket':
+            self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
+        if self.type=='Dragon':
+            self.skin.clip_draw(0, 96*2, 96, 96, self.x, self.y)
         font = load_font('ENCR10B.TTF', 30)
         font.draw(self.x-100, self.y - 50, 'HP: %d' % self.hp)
     def setHitEffect(self,Effect):
