@@ -36,7 +36,7 @@ class Monster(baseofCharacter):
         self.type=type
         self.skillX=0
         self.skillY=0
-        self.hp,mp=10,30
+        self.hp,mp=20,30
         self.battle=0
         self.dp=0
     def drawFirst(self):
