@@ -104,7 +104,7 @@ def battle(man,map,type):
             map.monster.hp=100
             man.fight='outhouse'
             print(map.monster.type)
-            man.won=map.monster.type
+            man.won=type
             man.skillDmg=map.monster.skillDmg
         if man.fight=='outhouse':
             man.fight=True
@@ -126,15 +126,35 @@ def battle(man,map,type):
                 man.drawSkill_Box(man.y)
         man.update()
         if map.monster.myTurn==True:
-
-            skillEfect = [load_image('Resources\\SkillEffect\\Thunder1.png'),
-                      load_image('Resources\\SkillEffect\\Thunder2.png'),
-                      load_image('Resources\\SkillEffect\\Thunder3.png'),
-                      load_image('Resources\\SkillEffect\\Thunder4.png'),
-                      load_image('Resources\\SkillEffect\\Thunder5.png'),
-                      load_image('Resources\\SkillEffect\\Thunder6.png')
-                      ]
-
+            if type=='Rocket':
+                skillEfect = [load_image('Resources\\SkillEffect\\Thunder1.png'),
+                          load_image('Resources\\SkillEffect\\Thunder2.png'),
+                          load_image('Resources\\SkillEffect\\Thunder3.png'),
+                          load_image('Resources\\SkillEffect\\Thunder4.png'),
+                          load_image('Resources\\SkillEffect\\Thunder5.png'),
+                          load_image('Resources\\SkillEffect\\Thunder6.png')
+                          ]
+            elif type=='Dragon':
+                skillEfect=[load_image('Resources\\SkillEffect\\Blizard1.png'),
+                          load_image('Resources\\SkillEffect\\Blizard2.png'),
+                          load_image('Resources\\SkillEffect\\Blizard3.png'),
+                           load_image('Resources\\SkillEffect\\Blizard4.png'),
+                            load_image('Resources\\SkillEffect\\Blizard5.png'),
+                            load_image('Resources\\SkillEffect\\Blizard6.png'),
+                            load_image('Resources\\SkillEffect\\Blizard7.png'),
+                            load_image('Resources\\SkillEffect\\Blizard8.png'),
+                            load_image('Resources\\SkillEffect\\Blizard9.png'),
+                            load_image('Resources\\SkillEffect\\Blizard10.png'),
+                            load_image('Resources\\SkillEffect\\Blizard11.png'),
+                            load_image('Resources\\SkillEffect\\Blizard12.png'),
+                            load_image('Resources\\SkillEffect\\Blizard13.png'),
+                            load_image('Resources\\SkillEffect\\Blizard14.png'),
+                            load_image('Resources\\SkillEffect\\Blizard15.png'),
+                            load_image('Resources\\SkillEffect\\Blizard16.png'),
+                            load_image('Resources\\SkillEffect\\Blizard17.png'),
+                            load_image('Resources\\SkillEffect\\Blizard18.png'),
+                            load_image('Resources\\SkillEffect\\Blizard19.png')
+                          ]
             hitEffect = [load_image('Resources\\BloodEffect\\bloodtrail0.png'),
                      load_image('Resources\\BloodEffect\\bloodtrail_1.png'),
                      load_image('Resources\\BloodEffect\\bloodtrail_2.png'),

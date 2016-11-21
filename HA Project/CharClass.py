@@ -74,16 +74,28 @@ class Monster(baseofCharacter):
     def drawSkillEfect(self,man,map):
         self.skillX=man.x
         self.skillY=man.y
-        for i in range(6):
-               clear_canvas()
-               map.draw()
-               self.draw()
-               man.drawBattle()
-               self.skillEffect[i].draw(man.x,man.y)
-               #self.skillUpdate()
-               #self.skillX+=self.skillX
-               delay(0.05)
-               man.update()
+        if self.type=='Rocket':
+            for i in range(6):
+                   clear_canvas()
+                   map.draw()
+                   self.draw()
+                   man.drawBattle()
+                   self.skillEffect[i].draw(man.x,man.y)
+                   #self.skillUpdate()
+                   #self.skillX+=self.skillX
+                   delay(0.05)
+                   man.update()
+        elif self.type=='Dragon':
+            for i in range(19):
+                clear_canvas()
+                map.draw()
+                self.draw()
+                man.drawBattle()
+                self.skillEffect[i].draw(man.x, man.y)
+                # self.skillUpdate()
+                # self.skillX+=self.skillX
+                delay(0.05)
+                man.update()
         for i in range(7):
             clear_canvas()
             map.draw()
@@ -321,11 +333,15 @@ class User(Monster):
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
         elif self.skinType=='Rocket':
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
+        elif self.skinType=='Dragon':
+            self.skin.clip_draw(0, 96*3, 96, 96, self.x, self.y)
     def drawBattle(self):
         if self.skinType=='Original':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
         elif self.skinType=='Rocket':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
+        elif self.type=='Dragon':
+            self.skin.clip_draw(0, 96*2, 96, 96, self.x, self.y)
         font=load_font('ENCR10B.TTF',30)
         font.draw(self.x,self.y-50,'HP: %d' % self.hp)
 
