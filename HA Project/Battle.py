@@ -26,10 +26,32 @@ def handle_events(man,map):
                                           load_image('Resources\\SkillEffect\\Thunder5.png'),
                                           load_image('Resources\\SkillEffect\\Thunder6.png')
                                           ]
+                        elif man.skinType=='Dragon':
+                            skillEfect = [load_image('Resources\\SkillEffect\\Blizard1.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard2.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard3.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard4.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard5.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard6.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard7.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard8.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard9.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard10.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard11.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard12.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard13.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard14.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard15.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard16.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard17.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard18.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard19.png')
+                                          ]
                         hitEffect = [load_image('Resources\\BloodEffect\\bloodtrail0.png'),load_image('Resources\\BloodEffect\\bloodtrail_1.png'),
                                      load_image('Resources\\BloodEffect\\bloodtrail_2.png'),load_image('Resources\\BloodEffect\\bloodtrail_3.png')
                                      ,load_image('Resources\\BloodEffect\\bloodtrail_4.png'),load_image('Resources\\BloodEffect\\bloodtrail_5.png')
                                      ,load_image('Resources\\BloodEffect\\bloodtrail_6.png'),load_image('Resources\\BloodEffect\\bloodtrail_7.png')]
+
 
                         man.setSkillEfect(skillEfect)
                         map.monster.setHitEffect(hitEffect)
