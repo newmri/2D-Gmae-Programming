@@ -156,7 +156,6 @@ class User(Monster):
                 for i in range(6):
                     clear_canvas()
                     map.draw()
-                    self.draw()
                     man.drawBattle()
                     self.skillEffect[i].draw(map.monster.x,map.monster.y)
                     # self.skillUpdate()
@@ -169,7 +168,6 @@ class User(Monster):
                 for i in range(19):
                     clear_canvas()
                     map.draw()
-                    self.draw()
                     man.drawBattle()
                     self.skillEffect[i].draw(map.monster.x,map.monster.y)
                     # self.skillUpdate()
@@ -427,7 +425,7 @@ class User(Monster):
         elif self.skinType=='Rocket':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
         elif self.skinType=='Dragon':
-            self.skin.clip_draw(0, 96, 96, 96, self.x+100, self.y)
+            self.skin.clip_draw(0, 96, 96, 96, self.x+30, self.y)
         font=load_font('ENCR10B.TTF',30)
         font.draw(self.x,self.y-50,'HP: %d' % self.hp)
 
