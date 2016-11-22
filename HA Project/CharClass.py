@@ -163,6 +163,19 @@ class User(Monster):
                     # self.skillX+=self.skillX
                     delay(0.05)
                     man.update()
+        elif self.skinType=='Dragon':
+                self.skillX = map.monster.x
+                self.skillY = map.monster.y
+                for i in range(19):
+                    clear_canvas()
+                    map.draw()
+                    self.draw()
+                    man.drawBattle()
+                    self.skillEffect[i].draw(map.monster.x,map.monster.y)
+                    # self.skillUpdate()
+                    # self.skillX+=self.skillX
+                    delay(0.05)
+                    man.update()
         for i in range(7):
             clear_canvas()
             map.draw()

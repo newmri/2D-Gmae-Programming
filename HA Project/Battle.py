@@ -27,9 +27,10 @@ def handle_events(man,map):
                                           load_image('Resources\\SkillEffect\\Thunder6.png')
                                           ]
                         elif man.skinType=='Dragon':
-                            skillEfect = [load_image('Resources\\SkillEffect\\Blizard1.png'),
-                                          load_image('Resources\\SkillEffect\\Blizard2.png'),
-                                          load_image('Resources\\SkillEffect\\Blizard3.png'),
+                            # typo Blizard -> Blizzard
+                            skillEfect = [load_image('Resources\\SkillEffect\\Blizard1U.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard2U.png'),
+                                          load_image('Resources\\SkillEffect\\Blizard3U.png'),
                                           load_image('Resources\\SkillEffect\\Blizard4.png'),
                                           load_image('Resources\\SkillEffect\\Blizard5.png'),
                                           load_image('Resources\\SkillEffect\\Blizard6.png'),
