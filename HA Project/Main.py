@@ -5,7 +5,7 @@ from map import Map
 from Battle import battle
 
 setBack()
-open_canvas(375, 397,sync=True)
+open_canvas(375, 397)
 house=load_image('Resources\\Map\\MansHouse.png')
 map=Map(house,375,397,'house')
 map.draw()
@@ -14,7 +14,7 @@ man=User(skin,'Original')
 retval,man=run('run',map,man)
 while(True):
     if retval=='inhouse':
-        open_canvas(375, 397,sync=True)
+        open_canvas(375, 397)
         house = load_image('Resources\\Map\\MansHouse.png')
         map = Map(house, 375, 397, 'house')
         map.draw()
@@ -23,7 +23,7 @@ while(True):
         man.skinType = 'Original'
         retval,man = run('run', map, man)
     elif retval=='outhouse':
-        open_canvas(1008, 689,sync=True)
+        open_canvas(1008, 689)
         outofhouse=load_image('Resources\\Map\\OutOfHouse.png')
         map=Map(outofhouse,1008,689,'outofhouse')
         if man.won=='Rocket':

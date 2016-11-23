@@ -145,32 +145,4 @@ def run(chk,map,man):
                 man.draw()
                 man.update()
                 delay(0.05)
-        return 'outofhouse'
-
-
-
-
-        
-        
-        
-    
-
-
-    
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
+    return 'outofhouse'
