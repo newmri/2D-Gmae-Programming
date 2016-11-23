@@ -4,6 +4,7 @@ FIRST,SECOND,THIRD,FORTH=0,1,2,3
 UP,DOWN,LEFT,RIGHT=0,1,2,3
 
 
+
 #              clip_draw(이미지 전체에서x좌표,y좌표, x표현범위,y표현범위,출력x좌표,출력y좌표)
 class baseofCharacter:
 
@@ -113,6 +114,15 @@ class Monster(baseofCharacter):
 
 
 class User(Monster):
+    PIXEL_PER_METER = (10/0.3)  # 10 pixel 30cm
+    RUN_SPEED_KMPH = 20.0
+    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+
+    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+    TIME_PER_ACTION = 0.5
+    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+    FRAMES_PER_ACTION = 4
     def __init__(self, skin, type):
         self.won=0
         self.skin = skin
@@ -129,6 +139,9 @@ class User(Monster):
         self.hp,mp=100,30
         self.dp=0
         self. myTurn=True
+        self.total_frames=0.0
+        self.distance=0
+        self.frame2=0
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
@@ -194,78 +207,19 @@ class User(Monster):
 
     def draw(self):
         if self.skinType == 'Original':
-            # Images of UP
-            if self.movePosition[UP] == True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 0, 30, 48, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(30, 0, 30, 48, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(30 * 2, 0, 30, 48, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(30 * 3 + 8, 0, 30, 48, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[UP]=True
-            elif (self.movePosition[UP] == False) & (self.moveChk[UP]==True):
-                  self.rotate = FIRST
-                  self.moveChk[UP]=False
-
-            # Images of DOWN
-            if self.movePosition[DOWN]==True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 48*3, 30, 48, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(30, 48*3, 30, 48, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(30 * 2, 48*3, 30, 48, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(30 * 3 + 8, 48*3, 30, 48, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[DOWN]=True
-            elif (self.movePosition[DOWN] == False) & (self.moveChk[DOWN]==True):
-                   self.roate=FIRST
-                   self.moveChk[DOWN]=False
-
-            # Images of LEFT
+            self.frame=(self.frame+1)%4
             if self.movePosition[LEFT]==True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 48*2, 30, 48, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(30, 48*2, 30, 48, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(30 * 2, 48*2, 30, 48, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(30 * 3 + 8, 48*2, 30, 48, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[LEFT]=True
-            elif (self.movePosition[LEFT] == False) & (self.moveChk[LEFT]==True):
-                   self.roate=FIRST
-                   self.moveChk[LEFT]=False
-
-            # Images of RIGHT
-            if self.movePosition[RIGHT]==True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(30, 48, 30, 48, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(30 * 2, 48, 30, 48, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(30 * 3 + 8, 48, 30, 48, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[RIGHT]=True
-            elif (self.movePosition[RIGHT] == False) & (self.moveChk[RIGHT]==True):
-                   self.roate=FIRST
-                   self.moveChk[RIGHT]=False
-
+                self.skin.clip_draw(self.frame*30,48*2,30,48,self.x,self.y)
+                self.movePosition[LEFT] == False
+            elif self.movePosition[RIGHT]==True:
+                self.skin.clip_draw(self.frame * 30, 48, 30, 48, self.x, self.y)
+                self.movePosition[RIGHT] == False
+            elif self.movePosition[UP] == True:
+                self.skin.clip_draw(self.frame * 30+8, 0, 30, 48, self.x, self.y)
+                self.movePosition[UP] == False
+            elif  self.movePosition[DOWN] == True:
+                self.skin.clip_draw(self.frame * 30+8, 48*3, 30, 48, self.x, self.y)
+                self.movePosition[DOWN] == False
         elif self.skinType == 'Rocket':
             # Images of UP
             if self.movePosition[UP] == True:
@@ -428,6 +382,11 @@ class User(Monster):
             self.skin.clip_draw(0, 96, 96, 96, self.x+30, self.y)
         font=load_font('ENCR10B.TTF',30)
         font.draw(self.x,self.y-50,'HP: %d' % self.hp)
+    def update(self):
+        #self.distance=self.RUN_SPEED_PPS
+        #self.total_frames+=self. FRAMES_PER_ACTION * self.ACTION_PER_TIME
+        #self.frame2=int(self.total_frames)%4
+        update_canvas()
 
 class NPC(baseofCharacter):
        pass

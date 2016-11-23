@@ -61,6 +61,7 @@ def run(chk,map,man):
 
             if man.movePosition[RIGHT]:
                 man.x += 5
+                #man.x+=man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -69,6 +70,7 @@ def run(chk,map,man):
 
             if man.movePosition[LEFT]:
                 man.x -= 5
+                #man.x-=man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -129,6 +131,7 @@ def run(chk,map,man):
 
             if man.movePosition[RIGHT]:
                 man.x += 5
+                #man.x += man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
