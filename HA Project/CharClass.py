@@ -232,78 +232,23 @@ class User(Monster):
                 self.skin.clip_draw(self.frame*32, 48, 30, 48, self.x, self.y)
 
         elif self.skinType == 'Dragon':
-            #  self.skin.clip_draw(0, 96*3, 96, 96, self.x, self.y)
+            self.frame = (self.frame + 1) % 4
             # Images of UP
             if self.movePosition[UP] == True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 0, 96, 96, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(96, 0, 96, 96, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(96*2, 0, 96, 96, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(96*3, 0, 96, 96, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[UP] = True
-            elif (self.movePosition[UP] == False) & (self.moveChk[UP] == True):
-                self.rotate = FIRST
-                self.moveChk[UP] = False
+                self.skin.clip_draw(self.frame*96, 0, 96, 96, self.x, self.y)
 
             # Images of DOWN
-            if self.movePosition[DOWN] == True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 96*3, 96, 96, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(96, 96 * 3, 96, 96, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(96*2, 96 * 3, 96, 96, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(96*3, 96 * 3, 96, 96, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[DOWN] = True
-            elif (self.movePosition[DOWN] == False) & (self.moveChk[DOWN] == True):
-                self.roate = FIRST
-                self.moveChk[DOWN] = False
+            elif self.movePosition[DOWN] == True:
+                self.skin.clip_draw(self.frame * 96,96*3,96,96, self.x, self.y)
 
             # Images of LEFT
-            if self.movePosition[LEFT] == True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 96 * 2, 96, 96, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(96, 96 * 2, 96, 96, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(96*2, 96 * 2, 96, 96, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(96*3, 96 * 2, 96, 96, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[LEFT] = True
-            elif (self.movePosition[LEFT] == False) & (self.moveChk[LEFT] == True):
-                self.roate = FIRST
-                self.moveChk[LEFT] = False
+            elif self.movePosition[LEFT] == True:
+                self.skin.clip_draw(self.frame * 96, 96 * 2, 96, 96, self.x, self.y)
 
             # Images of RIGHT
-            if self.movePosition[RIGHT] == True:
-                if self.rotate == FIRST:
-                    self.skin.clip_draw(0, 96, 96, 96, self.x, self.y)
-                elif self.rotate == SECOND:
-                    self.skin.clip_draw(96, 96, 96, 96, self.x, self.y)
-                elif self.rotate == THIRD:
-                    self.skin.clip_draw(96*2, 96, 96, 96, self.x, self.y)
-                elif self.rotate == FORTH:
-                    self.skin.clip_draw(96*3, 96, 96, 96, self.x, self.y)
-                self.rotate += 1
-                if self.rotate > FORTH:
-                    self.rotate = FIRST
-                self.moveChk[RIGHT] = True
-            elif (self.movePosition[RIGHT] == False) & (self.moveChk[RIGHT] == True):
-                self.roate = FIRST
-                self.moveChk[RIGHT] = False
+            elif self.movePosition[RIGHT] == True:
+                self.skin.clip_draw(self.frame * 96, 96, 96, 96, self.x, self.y)
+
 
     def drawFirst(self):
         if self.skinType == 'Original':
