@@ -84,13 +84,17 @@ def run(chk,map,man):
         man.movePosition=[False,False,False,False]
         skin=load_image('Resources\\Monster\\rocket.png')
         skin2=load_image('Resources\\Monster\\Dragon.png')
+        skin3=load_image('Resources\\Monster\\Lion.png')
         rocket=Monster(skin,'Rocket')
         dragon=Monster(skin2,'Dragon')
-        map.setMonster(rocket,dragon)
+        lion=Monster(skin3,'Lion')
+        map.setMonster(rocket,dragon,lion)
         map.monster.x=map.x/2
         map.monster.y=map.y/2
         map.dragon.x=map.x/2-150
         map.dragon.y = map.y / 2 - 30
+        map.lion.x=map.x/2-70
+        map.lion.y=map.y/2+40
         map.draw()
         map.monster.drawFirst()
         map.dragon.drawFirst()
@@ -105,6 +109,9 @@ def run(chk,map,man):
                 elif 50>= dist(man, map.dragon):
                     clear_canvas()
                     return 'battle', man,'Dragon'
+                elif 25>=dist(man,map.lion):
+                    clear_canvas()
+                    return 'battle',man,'Lion'
 
             handle_events(man)
             get_events()

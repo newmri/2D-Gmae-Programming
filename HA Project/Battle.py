@@ -48,6 +48,15 @@ def handle_events(man,map):
                                           load_image('Resources\\SkillEffect\\Blizard18.png'),
                                           load_image('Resources\\SkillEffect\\Blizard19.png')
                                           ]
+                        elif man.skinType=='Lion':
+                            skillEfect = [load_image('Resources\\SkillEffect\\Tornado1U.png'),
+                                          load_image('Resources\\SkillEffect\\Tornado2U.png'),
+                                          load_image('Resources\\SkillEffect\\Tornado3U.png'),
+                                          load_image('Resources\\SkillEffect\\Tornado4U.png'),
+                                          load_image('Resources\\SkillEffect\\Tornado5U.png'),
+                                          load_image('Resources\\SkillEffect\\Tornado6U.png')
+                                          ]
+
                         hitEffect = [load_image('Resources\\BloodEffect\\bloodtrail0.png'),load_image('Resources\\BloodEffect\\bloodtrail_1.png'),
                                      load_image('Resources\\BloodEffect\\bloodtrail_2.png'),load_image('Resources\\BloodEffect\\bloodtrail_3.png')
                                      ,load_image('Resources\\BloodEffect\\bloodtrail_4.png'),load_image('Resources\\BloodEffect\\bloodtrail_5.png')
@@ -106,6 +115,12 @@ def battle(man,map,type):
         skin = load_image('Resources\\Monster\\Dragon.png')
         dragon = Monster(skin, 'Dragon')
         map.setBattleMonster(dragon,'Dragon')
+        map.monster.x = map.x-100
+        map.monster.y = map.y / 2
+    elif type=='Lion':
+        skin = load_image('Resources\\Monster\\Lion.png')
+        lion = Monster(skin, 'Lion')
+        map.setBattleMonster(lion,'Lion')
         map.monster.x = map.x-100
         map.monster.y = map.y / 2
     map.draw()
@@ -178,6 +193,14 @@ def battle(man,map,type):
                             load_image('Resources\\SkillEffect\\Blizard18.png'),
                             load_image('Resources\\SkillEffect\\Blizard19.png')
                           ]
+            elif type=='Lion':
+                skillEfect = [load_image('Resources\\SkillEffect\\Tornado1.png'),
+                              load_image('Resources\\SkillEffect\\Tornado2.png'),
+                              load_image('Resources\\SkillEffect\\Tornado3.png'),
+                              load_image('Resources\\SkillEffect\\Tornado4.png'),
+                              load_image('Resources\\SkillEffect\\Tornado5.png'),
+                              load_image('Resources\\SkillEffect\\Tornado6.png')
+                              ]
             hitEffect = [load_image('Resources\\BloodEffect\\bloodtrail0.png'),
                      load_image('Resources\\BloodEffect\\bloodtrail_1.png'),
                      load_image('Resources\\BloodEffect\\bloodtrail_2.png'),

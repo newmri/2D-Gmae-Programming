@@ -45,11 +45,15 @@ class Monster(baseofCharacter):
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
         elif self.type=='Dragon':
             self.skin.clip_draw(0, 96, 96, 96, self.x, self.y)
+        elif self.type=='Lion':
+            self.skin.clip_draw(0, 75*2+5, 60, 70, self.x, self.y)
     def drawBattle(self):
         if self.type=='Rocket':
             self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
-        if self.type=='Dragon':
+        elif self.type=='Dragon':
             self.skin.clip_draw(0, 96*2, 96, 96, self.x, self.y)
+        elif self.type=='Lion':
+            self.skin.clip_draw(0, 100, 55, 70, self.x, self.y)
         font = load_font('ENCR10B.TTF', 30)
         font.draw(self.x-100, self.y - 50, 'HP: %d' % self.hp)
     def setHitEffect(self,Effect):
@@ -97,6 +101,18 @@ class Monster(baseofCharacter):
                 # self.skillX+=self.skillX
                 delay(0.05)
                 man.update()
+        elif self.type=='Lion':
+            for i in range(6):
+                   clear_canvas()
+                   map.draw()
+                   self.draw()
+                   man.drawBattle()
+                   self.skillEffect[i].draw(man.x,man.y)
+                   #self.skillUpdate()
+                   #self.skillX+=self.skillX
+                   delay(0.05)
+                   man.update()
+
         for i in range(7):
             clear_canvas()
             map.draw()
@@ -187,6 +203,19 @@ class User(Monster):
                     # self.skillX+=self.skillX
                     delay(0.05)
                     man.update()
+        elif self.skinType=='Lion':
+            self.skillX = map.monster.x
+            self.skillY = map.monster.y
+            for i in range(6):
+                clear_canvas()
+                map.draw()
+                man.drawBattle()
+                self.skillEffect[i].draw(map.monster.x, map.monster.y)
+                # self.skillUpdate()
+                # self.skillX+=self.skillX
+                delay(0.05)
+                man.update()
+
         for i in range(7):
             clear_canvas()
             map.draw()
@@ -248,7 +277,23 @@ class User(Monster):
             # Images of RIGHT
             elif self.movePosition[RIGHT] == True:
                 self.skin.clip_draw(self.frame * 96, 96, 96, 96, self.x, self.y)
+        elif self.skinType=='Lion':
+            self.frame = (self.frame + 1) % 4
+            # Images of UP
+            if self.movePosition[UP] == True:
+                self.skin.clip_draw(self.frame*57, 0, 60, 55, self.x, self.y)
 
+            # Images of DOWN
+            elif self.movePosition[DOWN] == True:
+                self.skin.clip_draw(self.frame * 57,75 * 2 + 5,60,70, self.x, self.y)
+
+            # Images of LEFT
+            elif self.movePosition[LEFT] == True:
+                self.skin.clip_draw(self.frame*57, 100, 55, 65, self.x, self.y)
+
+            # Images of RIGHT
+            elif self.movePosition[RIGHT] == True:
+                self.skin.clip_draw(self.frame * 57, 58, 58, 55, self.x, self.y)
 
     def drawFirst(self):
         if self.skinType == 'Original':
@@ -257,6 +302,8 @@ class User(Monster):
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48, self.x, self.y)
         elif self.skinType=='Dragon':
             self.skin.clip_draw(0, 96*3, 96, 96, self.x, self.y)
+        elif self.skinType=='Lion':
+            self.skin.clip_draw(0, 75 * 2 + 5, 60, 70, self.x, self.y)
     def drawBattle(self):
         if self.skinType=='Original':
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
@@ -264,6 +311,8 @@ class User(Monster):
             self.skin.clip_draw(0, 48, 30, 48, self.x, self.y)
         elif self.skinType=='Dragon':
             self.skin.clip_draw(0, 96, 96, 96, self.x+30, self.y)
+        elif self.skinType=='Lion':
+            self.skin.clip_draw(0, 58, 58, 55, self.x, self.y)
         font=load_font('ENCR10B.TTF',30)
         font.draw(self.x,self.y-50,'HP: %d' % self.hp)
     def update(self):

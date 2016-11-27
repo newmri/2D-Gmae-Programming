@@ -32,6 +32,9 @@ while(True):
         elif man.won=='Dragon':
             man.skin=load_image('Resources\\Monster\\Dragon.png')
             man.skinType='Dragon'
+        elif man.won=='Lion':
+            man.skin = load_image('Resources\\Monster\\Lion.png')
+            man.skinType = 'Lion'
         else:
             man.skin=load_image('Resources\\MainCharacter\\Original.png')
             man.skinType='Original'
@@ -45,6 +48,9 @@ while(True):
         elif man.won=='Dragon':
             man.skin=load_image('Resources\\Monster\\Dragon.png')
             man.skinType='Dragon'
+        elif man.won=='Lion':
+            man.skin=load_image('Resources\\Monster\\Lion.png')
+            man.skinType='Lion'
         else:
             man.skin=load_image('Resources\\MainCharacter\\Original.png')
             man.skinType='Original'
