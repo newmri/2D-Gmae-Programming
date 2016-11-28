@@ -123,6 +123,9 @@ def battle(man,map,type):
         map.setBattleMonster(lion,'Lion')
         map.monster.x = map.x-100
         map.monster.y = map.y / 2
+    map.bgm = load_music('Resources\\SoundTrack\\BattleBGM.mp3')
+    map.bgm.set_volume(64)
+    map.bgm.repeat_play()
     map.draw()
     man.x=30
     man.y=map.y/2

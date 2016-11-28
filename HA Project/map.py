@@ -1,3 +1,4 @@
+from pico2d import *
 class Map:
     def __init__(self,map,x,y,name):
          self.map=map
@@ -5,6 +6,9 @@ class Map:
          self.y=y
          self.name=name
          self.chk=False
+         self.bgm=load_music('Resources\\SoundTrack\\BGM.mp3')
+         self.bgm.set_volume(64)
+         self.bgm.repeat_play()
     def setMonster(self,monster,dragon,lion):
         self.monster=monster
         self.dragon=dragon
@@ -25,6 +29,7 @@ class Map:
                 self.dragon.drawFirst()
                 self.lion.drawFirst()
              else:
+
                 self.monster.drawBattle()
 
 
