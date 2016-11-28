@@ -40,6 +40,7 @@ class Monster(baseofCharacter):
         self.hp,mp=20,30
         self.battle=0
         self.dp=0
+        self.skillSound=None
     def drawFirst(self):
         if self.type=='Rocket':
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
@@ -80,6 +81,10 @@ class Monster(baseofCharacter):
         self.skillX=man.x
         self.skillY=man.y
         if self.type=='Rocket':
+            if self.skillSound==None:
+                self.skillSound = load_wav('Resources\\SoundTrack\\Thunder.wav')
+                self.skillSound.set_volume(128)
+            self.skillSound.play()
             for i in range(6):
                    clear_canvas()
                    map.draw()
@@ -90,7 +95,15 @@ class Monster(baseofCharacter):
                    #self.skillX+=self.skillX
                    delay(0.05)
                    man.update()
+
+
         elif self.type=='Dragon':
+            if self.skillSound==None:
+                self.skillSound = load_wav('Resources\\SoundTrack\\Blizzard.wav')
+                self.skillSound.set_volume(128)
+            self.skillSound.play()
+            delay(4.5)
+            
             for i in range(19):
                 clear_canvas()
                 map.draw()
@@ -102,6 +115,11 @@ class Monster(baseofCharacter):
                 delay(0.05)
                 man.update()
         elif self.type=='Lion':
+            if self.skillSound==None:
+                self.skillSound = load_wav('Resources\\SoundTrack\\Tornado.wav')
+                self.skillSound.set_volume(128)
+            self.skillSound.play()
+            delay(3)
             for i in range(6):
                    clear_canvas()
                    map.draw()
@@ -158,6 +176,7 @@ class User(Monster):
         self.total_frames=0.0
         self.distance=0
         self.frame2=0
+        self.skillSound=None
     def skillUpdate(self):
         self.frame = (self.frame + 1) % 6
     def setSkill(self, skill):
@@ -182,6 +201,9 @@ class User(Monster):
         elif self.skinType=='Rocket':
                 self.skillX = map.monster.x
                 self.skillY = map.monster.y
+                self.skillSound = load_wav('Resources\\SoundTrack\\Thunder.wav')
+                self.skillSound.set_volume(128)
+                self.skillSound.play()
                 for i in range(6):
                     clear_canvas()
                     map.draw()
@@ -194,6 +216,10 @@ class User(Monster):
         elif self.skinType=='Dragon':
                 self.skillX = map.monster.x
                 self.skillY = map.monster.y
+                self.skillSound = load_wav('Resources\\SoundTrack\\Blizzard.wav')
+                self.skillSound.set_volume(128)
+                self.skillSound.play()
+                delay(4.5)
                 for i in range(19):
                     clear_canvas()
                     map.draw()
@@ -206,6 +232,10 @@ class User(Monster):
         elif self.skinType=='Lion':
             self.skillX = map.monster.x
             self.skillY = map.monster.y
+            self.skillSound = load_wav('Resources\\SoundTrack\\Tornado.wav')
+            self.skillSound.set_volume(128)
+            self.skillSound.play()
+            delay(3)
             for i in range(6):
                 clear_canvas()
                 map.draw()
