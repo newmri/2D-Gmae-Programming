@@ -82,9 +82,16 @@ class Monster(baseofCharacter):
         self.skillY=man.y
         if self.type=='Rocket':
             if self.skillSound==None:
-                self.skillSound = load_wav('Resources\\SoundTrack\\Thunder.wav')
+                self.skillSound = load_music('Resources\\SoundTrack\\Thunder.mp3')
                 self.skillSound.set_volume(128)
+            map.bgm.pause()
             self.skillSound.play()
+            clear_canvas()
+            map.draw()
+            self.draw()
+            man.drawBattle()
+            man.update()
+            delay(2)
             for i in range(6):
                    clear_canvas()
                    map.draw()
@@ -96,14 +103,21 @@ class Monster(baseofCharacter):
                    delay(0.05)
                    man.update()
 
+            #self.skillSound.pause()
+
 
         elif self.type=='Dragon':
             if self.skillSound==None:
-                self.skillSound = load_wav('Resources\\SoundTrack\\Blizzard.wav')
+                self.skillSound = load_music('Resources\\SoundTrack\\Blizzard.mp3')
                 self.skillSound.set_volume(128)
+            map.bgm.pause()
             self.skillSound.play()
+            clear_canvas()
+            map.draw()
+            self.draw()
+            man.drawBattle()
+            man.update()
             delay(4.5)
-            
             for i in range(19):
                 clear_canvas()
                 map.draw()
@@ -116,9 +130,15 @@ class Monster(baseofCharacter):
                 man.update()
         elif self.type=='Lion':
             if self.skillSound==None:
-                self.skillSound = load_wav('Resources\\SoundTrack\\Tornado.wav')
+                self.skillSound = load_music('Resources\\SoundTrack\\Tornado.mp3')
                 self.skillSound.set_volume(128)
+            map.bgm.pause()
             self.skillSound.play()
+            clear_canvas()
+            map.draw()
+            self.draw()
+            man.drawBattle()
+            man.update()
             delay(3)
             for i in range(6):
                    clear_canvas()
@@ -145,6 +165,10 @@ class Monster(baseofCharacter):
         map.draw()
         man.drawBattle()
         man.update()
+        self.skillSound.stop()
+        map.bgm = load_music('Resources\\SoundTrack\\BattleBGM.mp3')
+        map.bgm.set_volume(64)
+        map.bgm.repeat_play()
 
 
 class User(Monster):
@@ -201,9 +225,15 @@ class User(Monster):
         elif self.skinType=='Rocket':
                 self.skillX = map.monster.x
                 self.skillY = map.monster.y
-                self.skillSound = load_wav('Resources\\SoundTrack\\Thunder.wav')
+                self.skillSound = load_music('Resources\\SoundTrack\\Thunder.mp3')
                 self.skillSound.set_volume(128)
+                map.bgm.pause()
                 self.skillSound.play()
+                clear_canvas()
+                map.draw()
+                man.drawBattle()
+                man.update()
+                delay(2)
                 for i in range(6):
                     clear_canvas()
                     map.draw()
@@ -216,8 +246,9 @@ class User(Monster):
         elif self.skinType=='Dragon':
                 self.skillX = map.monster.x
                 self.skillY = map.monster.y
-                self.skillSound = load_wav('Resources\\SoundTrack\\Blizzard.wav')
+                self.skillSound = load_music('Resources\\SoundTrack\\Blizzard.mp3')
                 self.skillSound.set_volume(128)
+                map.bgm.pause()
                 self.skillSound.play()
                 delay(4.5)
                 for i in range(19):
@@ -232,8 +263,9 @@ class User(Monster):
         elif self.skinType=='Lion':
             self.skillX = map.monster.x
             self.skillY = map.monster.y
-            self.skillSound = load_wav('Resources\\SoundTrack\\Tornado.wav')
+            self.skillSound = load_music('Resources\\SoundTrack\\Tornado.mp3')
             self.skillSound.set_volume(128)
+            map.bgm.pause()
             self.skillSound.play()
             delay(3)
             for i in range(6):
@@ -253,6 +285,11 @@ class User(Monster):
             map.monster.hitEffect[i].draw(map.monster.x,map.monster.y)
             delay(0.05)
             man.update()
+        if(self.skinType!='Original'):
+            self.skillSound.stop()
+        map.bgm = load_music('Resources\\SoundTrack\\BattleBGM.mp3')
+        map.bgm.set_volume(64)
+        map.bgm.repeat_play()
     def setBattleDialog(self,dialog):
         self.dialog=dialog
     def resetBattleDialog(self):
