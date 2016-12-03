@@ -26,6 +26,9 @@ while(True):
         open_canvas(1008, 689)
         outofhouse=load_image('Resources\\Map\\OutOfHouse.png')
         map=Map(outofhouse,1008,689,'outofhouse')
+        map.bgm=load_music('Resources\\SoundTrack\\BGM.mp3')
+        map.bgm.set_volume(64)
+        map.bgm.repeat_play()
         if man.won=='Rocket':
             man.skin=load_image('Resources\\Monster\\rocket.png')
             man.skinType='Rocket'

@@ -34,7 +34,8 @@ def run(chk,map,man):
         man.x = map.x/2
         man.y = map.y/2
         man.drawFirst()
-        man.update()
+        #man.update()
+        update_canvas()
         while (True):
             print(man.x, man.y)
 
@@ -46,13 +47,15 @@ def run(chk,map,man):
             if man.movePosition[UP]:
                 clear_canvas()
                 map.draw()
-                man.y += 5
+                #man.y += 5
+                man.y += man.distance
                 man.draw()
                 man.update()
                 delay(0.05)
 
             if man.movePosition[DOWN]:
-                man.y -= 5
+                #man.y -= 5
+                man.y -= man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -60,8 +63,8 @@ def run(chk,map,man):
                 delay(0.05)
 
             if man.movePosition[RIGHT]:
-                man.x += 5
-                #man.x+=man.distance
+                #man.x += 5
+                man.x+=man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -69,8 +72,8 @@ def run(chk,map,man):
                 delay(0.05)
 
             if man.movePosition[LEFT]:
-                man.x -= 5
-                #man.x-=man.distance
+                #man.x -= 5
+                man.x-=man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -123,13 +126,15 @@ def run(chk,map,man):
             if man.movePosition[UP]:
                 clear_canvas()
                 map.draw()
-                man.y += 5
+                #man.y += 5
+                man.y += man.distance
                 man.draw()
                 man.update()
                 delay(0.05)
 
             if man.movePosition[DOWN]:
-                man.y -= 5
+                #man.y -= 5
+                man.y -= man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -137,8 +142,8 @@ def run(chk,map,man):
                 delay(0.05)
 
             if man.movePosition[RIGHT]:
-                man.x += 5
-                #man.x += man.distance
+               # man.x += 5
+                man.x += man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()
@@ -146,7 +151,8 @@ def run(chk,map,man):
                 delay(0.05)
 
             if man.movePosition[LEFT]:
-                man.x -= 5
+                #man.x -= 5
+                man.x -= man.distance
                 clear_canvas()
                 map.draw()
                 man.draw()

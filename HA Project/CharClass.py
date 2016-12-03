@@ -172,12 +172,13 @@ class Monster(baseofCharacter):
 
 
 class User(Monster):
-    PIXEL_PER_METER = (10/0.3)  # 10 pixel 30cm
-    RUN_SPEED_KMPH = 20.0
-    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
-    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
-
-    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+    PIXEL_PER_METER = (5/15)  # 5 pixel 150cm
+    RUN_SPEED_KMPH = 50.0 # 1시간에 50키로
+    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0) # 1분에 833.3미터 이동
+    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0) # 1초에 13미터
+    # 1초에 약 50미터 이동
+     # map= 세로 1키로 가로 600 미터
+    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER) # 3
     TIME_PER_ACTION = 0.5
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
     FRAMES_PER_ACTION = 4
@@ -383,9 +384,9 @@ class User(Monster):
         font=load_font('ENCR10B.TTF',30)
         font.draw(self.x,self.y-50,'HP: %d' % self.hp)
     def update(self):
-        #self.distance=self.RUN_SPEED_PPS
-        #self.total_frames+=self. FRAMES_PER_ACTION * self.ACTION_PER_TIME
-        #self.frame2=int(self.total_frames)%4
+        self.distance=self.RUN_SPEED_PPS
+        self.total_frames+=self. FRAMES_PER_ACTION * self.ACTION_PER_TIME
+        self.frame2=int(self.total_frames)%4
         update_canvas()
 
 class NPC(baseofCharacter):
