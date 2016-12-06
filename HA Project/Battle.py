@@ -126,9 +126,11 @@ def battle(man,map,type):
     map.bgm = load_music('Resources\\SoundTrack\\BattleBGM.mp3')
     map.bgm.set_volume(64)
     map.bgm.repeat_play()
+    map.monster.setAbilities()
     map.draw()
     man.x=30
     man.y=map.y/2
+    man.setAbilities()
     man.drawBattle()
     dialogFight = load_image('Resources\\DialogBox\\DialogFight.png')
     dialogRunAway = load_image('Resources\\DialogBox\\DialogRunAway.png')
@@ -140,13 +142,13 @@ def battle(man,map,type):
         if(map.monster.myTurn==False):
             handle_events(man,map)
             get_events()
-        if map.monster.hp<=0 or man.hp<=0:
+        if map.monster.hp<=0:
             man.hp=100
-            map.monster.hp=100
             man.fight='outhouse'
-            print(map.monster.type)
             man.won=type
             man.skillDmg=map.monster.skillDmg
+        if man.hp<=0:
+            return 'quit',man
         if man.fight=='outhouse':
             man.fight=True
             return 'outhouse',man

@@ -24,6 +24,19 @@ class baseofCharacter:
 
     def drawFirst(self):
          pass
+    def setAbilities(self):
+        if self.type == 'Rocket':
+            self.hp = 66
+            self.dp = 0
+            self.skillDmg = 9
+        elif self.type == 'Dragon':
+            self.hp = 77
+            self.dp = 0
+            self.skillDmg = 7
+        elif self.type == 'Lion':
+            self.hp = 40
+            self.dp = 3
+            self.skillDmg = 8
 
 
 class Monster(baseofCharacter):
@@ -44,10 +57,19 @@ class Monster(baseofCharacter):
     def drawFirst(self):
         if self.type=='Rocket':
             self.skin.clip_draw(0, 48 * 3, 42 - 12, 48,self.x,self.y)
+            self.hp=66
+            self.dp=0
+            self.skillDmg=9
         elif self.type=='Dragon':
             self.skin.clip_draw(0, 96, 96, 96, self.x, self.y)
+            self.hp=77
+            self.dp=0
+            self.skillDmg=7
         elif self.type=='Lion':
             self.skin.clip_draw(0, 75*2+5, 60, 70, self.x, self.y)
+            self.hp=40
+            self.dp=3
+            self.skillDmg=8
     def drawBattle(self):
         if self.type=='Rocket':
             self.skin.clip_draw(0, 48 * 2, 42 - 12, 48, self.x, self.y)
@@ -172,18 +194,22 @@ class Monster(baseofCharacter):
 
 
 class User(Monster):
-    PIXEL_PER_METER = (5/15)  # 5 pixel 150cm
-    RUN_SPEED_KMPH = 50.0 # 1시간에 50키로
-    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0) # 1분에 833.3미터 이동
-    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0) # 1초에 13미터
-    # 1초에 약 50미터 이동
-     # map= 세로 1키로 가로 600 미터
+    PIXEL_PER_METER = (5/7)  # 5 pixel 70cm
+    RUN_SPEED_KMPH = 20.0 # 1시간에 20키로
+    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0) # 1분에 333미터 이동
+    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0) # 1초에 5.55미터
+    # 1초에 약 3.885미터 이동
+    # map= 세로 1키로 가로 600 미터
+    # 689미터 이동하는데 현실 14초
+    # 현실과 게임 속 시간 차이는 13배 게임이 현실보다 13배 빠르다 현실의 1초는 게임의 13초
+
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER) # 3
     TIME_PER_ACTION = 0.5
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
     FRAMES_PER_ACTION = 4
     def __init__(self, skin, type):
         self.won=0
+        self.lost=False
         self.skin = skin
         self.skinType = type
         self.movePosition=[False,False,False,False]
@@ -194,8 +220,8 @@ class User(Monster):
         self.fightRun=False
         self.drawDiaChk=True
         self.drawSkillChk=False
-        self.skillDmg=10
-        self.hp,mp=100,30
+        self.skillDmg=5
+        self.hp,mp=0,30
         self.dp=0
         self. myTurn=True
         self.total_frames=0.0
@@ -388,6 +414,19 @@ class User(Monster):
         self.total_frames+=self. FRAMES_PER_ACTION * self.ACTION_PER_TIME
         self.frame2=int(self.total_frames)%4
         update_canvas()
+    def setAbilities(self):
+        if self.skinType == 'Rocket':
+            self.hp = 66
+            self.dp = 0
+            self.skillDmg = 9
+        elif self.skinType == 'Dragon':
+            self.hp = 77
+            self.dp = 0
+            self.skillDmg = 7
+        elif self.skinType == 'Lion':
+            self.hp = 40
+            self.dp = 3
+            self.skillDmg = 8
 
 class NPC(baseofCharacter):
     pass

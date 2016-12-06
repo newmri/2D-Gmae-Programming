@@ -12,7 +12,8 @@ map.draw()
 skin=load_image('Resources\\MainCharacter\\Original.png')
 man=User(skin,'Original')
 retval,man=run('run',map,man)
-while(True):
+Run=True
+while(Run):
     if retval=='inhouse':
         open_canvas(375, 397)
         house = load_image('Resources\\Map\\MansHouse.png')
@@ -58,3 +59,5 @@ while(True):
             man.skin=load_image('Resources\\MainCharacter\\Original.png')
             man.skinType='Original'
         retval,man = battle(man,map,type)
+    elif retval=='quit':
+        Run=False
