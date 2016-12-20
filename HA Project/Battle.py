@@ -15,7 +15,7 @@ def handle_events(man,map):
                     close_canvas()
                 elif man.fightRun==True:
                     if event.key == SDLK_SPACE:
-                        print("skill")
+
                         if man.skinType=='Original':
                             skillEfect = load_image('Resources\\SkillEffect\\Fire.png')
                         elif man.skinType=='Rocket':
@@ -68,7 +68,7 @@ def handle_events(man,map):
                         man.drawSkillEfect(man,map)
                         map.monster.calDamage(man.skillDmg)
                         map.monster.myTurn = True
-                        print(map.monster.hp)
+
 
                 elif man.fight==True:
                      if event.key == SDLK_SPACE:
@@ -143,7 +143,7 @@ def battle(man,map,type):
             handle_events(man,map)
             get_events()
         if map.monster.hp<=0:
-            man.hp=100
+            #man.hp=100
             man.fight='outhouse'
             man.won=type
             man.skillDmg=map.monster.skillDmg
@@ -218,7 +218,7 @@ def battle(man,map,type):
             map.monster.setSkillEfect(skillEfect)
             man.setHitEffect(hitEffect)
             map.monster.drawSkillEfect(man,map)
-            print(map.monster.skillDmg)
+
             map.monster.myTurn = False
 
 

@@ -30,7 +30,7 @@ class baseofCharacter:
             self.dp = 0
             self.skillDmg = 9
         elif self.type == 'Dragon':
-            self.hp = 77
+            self.hp = 30
             self.dp = 0
             self.skillDmg = 7
         elif self.type == 'Lion':
@@ -182,7 +182,7 @@ class Monster(baseofCharacter):
             delay(0.05)
             man.update()
         man.calDamage(self.skillDmg)
-        print(man.hp)
+
         clear_canvas()
         map.draw()
         man.drawBattle()
@@ -221,7 +221,7 @@ class User(Monster):
         self.drawDiaChk=True
         self.drawSkillChk=False
         self.skillDmg=5
-        self.hp,mp=0,30
+        self.hp,mp=100,30
         self.dp=0
         self. myTurn=True
         self.total_frames=0.0
@@ -420,7 +420,7 @@ class User(Monster):
             self.dp = 0
             self.skillDmg = 9
         elif self.skinType == 'Dragon':
-            self.hp = 77
+            self.hp = 30
             self.dp = 0
             self.skillDmg = 7
         elif self.skinType == 'Lion':

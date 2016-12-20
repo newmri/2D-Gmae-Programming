@@ -37,7 +37,7 @@ def run(chk,map,man):
         #man.update()
         update_canvas()
         while (True):
-            print(man.x, man.y)
+
 
             handle_events(man)
             get_events()
@@ -104,7 +104,7 @@ def run(chk,map,man):
         man.drawFirst()
         man.update()
         while (True):          # y 300 700 x 469~534
-            #print(man.x, man.y)
+
             if map.chk == True:
                 if 25>= dist(man, map.monster):
                     clear_canvas()
